@@ -3,7 +3,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <main></main>
+      <main className="pokemon-cards-container"></main>
     </div>
   );
 }
