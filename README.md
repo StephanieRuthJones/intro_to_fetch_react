@@ -32,3 +32,10 @@ Follow the steps below to complete this challenge.
     </Card.Body>
 </Card>
 ```
+### Part II: Refactor Card Code into Separate Component
+- [ ] Create `components` folder in `src` directory
+- [ ] Create `PokemonCard.jsx` file in `components folder`
+- [ ] Create a function component in `PokemonCard.jsx` file by copy and pasting all `Card` code 
+- [ ] Import `PokemonCard.jsx` to `App.js`
+- [ ] Set up `PokemonCard` in `App.js` and pass all props
+- [ ] Check to make sure everything looks as expected when you run the app

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
+import PokemonCard from "./components/PokemonCard";
 import "./App.css";
 const baseUrl = "https://pokeapi.co/api/v2/pokemon";
 function App() {
@@ -20,19 +20,8 @@ function App() {
           const { name, url } = pokemon;
           const id = url.split("/")[6];
           const formattedName = name[0].toUpperCase() + name.slice(1);
-          return (
-            <Card className="pokemon-card" key={id}>
-              <Card.Header>Pokemon ID: {id}</Card.Header>
-              <Card.Img
-                variant="top"
-                src="https://via.placeholder.com/350x150"
-              />
-              <Card.Body>
-                <Card.Title>{formattedName}</Card.Title>
-                <Card.Text>Description goes here.</Card.Text>
-              </Card.Body>
-            </Card>
-          );
+
+          return <PokemonCard key={id} id={id} name={formattedName} />;
         })}
       </main>
     </div>
