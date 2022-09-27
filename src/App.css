@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+.pokemon-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.pokemon-name::first-letter {
+  text-transform: capitalize;
+}
+.pokemon-card {
+  width: 33%;
+  margin: 30px;
+}
