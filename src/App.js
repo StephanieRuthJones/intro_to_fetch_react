@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     getAllPokemons();
   }, []);
-  console.log("pokemonList", pokemonList);
+
   return (
     <div className="App">
       <main className="pokemon-cards-container">
