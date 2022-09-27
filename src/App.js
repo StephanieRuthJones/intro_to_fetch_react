@@ -4,11 +4,24 @@ import "./App.css";
 const baseUrl = "https://pokeapi.co/api/v2/pokemon";
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
+
+  const createPokemonObject = (results) => {
+    results.forEach(async (pokemon) => {
+      const response = await fetch(`${baseUrl}/${pokemon.name}`);
+      const pokemonStats = await response.json();
+      const { id, sprites, name } = pokemonStats;
+      const { front_default } = sprites;
+      !pokemonList.includes(pokemon.name) &&
+        setPokemonList((prev) => [...prev, { id, name, img: front_default }]);
+    });
+  };
+
   const getAllPokemons = async () => {
     const response = await fetch(`${baseUrl}?limit=20`);
     const data = await response.json();
-    setPokemonList(data.results);
+    createPokemonObject(data.results);
   };
+  
   useEffect(() => {
     getAllPokemons();
   }, []);
@@ -17,11 +30,17 @@ function App() {
     <div className="App">
       <main className="pokemon-cards-container">
         {pokemonList.map((pokemon) => {
-          const { name, url } = pokemon;
-          const id = url.split("/")[6];
+          const { id, name, img } = pokemon;
           const formattedName = name[0].toUpperCase() + name.slice(1);
 
-          return <PokemonCard key={id} id={id} name={formattedName} />;
+          return (
+            <PokemonCard
+              key={`${name}-${id}`}
+              id={id}
+              name={formattedName}
+              img={img}
+            />
+          );
         })}
       </main>
     </div>
