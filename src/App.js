@@ -5,9 +5,13 @@ const baseUrl = "https://pokeapi.co/api/v2/pokemon";
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const getAllPokemons = async () => {
-    const response = await fetch(`${baseUrl}?limit=20`);
-    const data = await response.json();
-    setPokemonList(data.results);
+    try {
+      const response = await fetch(`${baseUrl}?limit=20`);
+      const data = await response.json();
+      setPokemonList(data.results);
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     getAllPokemons();
