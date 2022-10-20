@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getIdFromUrl, formatName } from "./utils";
 import PokemonCard from "./components/PokemonCard";
 import "./App.css";
 const baseUrl = "https://pokeapi.co/api/v2/pokemon";
@@ -16,12 +17,11 @@ function App() {
   return (
     <div className="App">
       <main className="pokemon-cards-container">
-        {pokemonList.map((pokemon) => {
-          const { name, url } = pokemon;
-          const id = url.split("/")[6];
-          const formattedName = name[0].toUpperCase() + name.slice(1);
-
-          return <PokemonCard key={id} id={id} name={formattedName} />;
+        {pokemonList.map(({ name, url }) => {
+          const id = getIdFromUrl(url);
+          return (
+            <PokemonCard key={id} id={id} name={formatName(name)} img={url} />
+          );
         })}
       </main>
     </div>
