@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getIdFromUrl, formatName } from "./utils";
+import { formatName } from "./utils";
 import PokemonCard from "./components/PokemonCard";
 import "./App.css";
 const baseUrl = "https://pokeapi.co/api/v2/pokemon";
