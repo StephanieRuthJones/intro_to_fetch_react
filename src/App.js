@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getIdFromUrl, formatName } from "./utils";
 import PokemonCard from "./components/PokemonCard";
 import "./App.css";
 const baseUrl = "https://pokeapi.co/api/v2/pokemon";
@@ -21,7 +22,7 @@ function App() {
     const data = await response.json();
     createPokemonObject(data.results);
   };
-  
+
   useEffect(() => {
     getAllPokemons();
   }, []);
@@ -31,13 +32,11 @@ function App() {
       <main className="pokemon-cards-container">
         {pokemonList.map((pokemon) => {
           const { id, name, img } = pokemon;
-          const formattedName = name[0].toUpperCase() + name.slice(1);
-
           return (
             <PokemonCard
               key={`${name}-${id}`}
               id={id}
-              name={formattedName}
+              name={formatName(name)}
               img={img}
             />
           );
